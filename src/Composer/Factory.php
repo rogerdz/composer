@@ -382,6 +382,16 @@ class Factory
             $composer->setPluginManager($pm);
 
             $pm->loadInstalledPlugins();
+
+            $customComposer = null;
+            if (realpath($config->get('home')) !== $cwd) {
+                $customComposer = $this->createCustomComposer($io, $config, $disablePlugins);
+            }
+
+            $pm = $this->createPluginManager($io, $composer, $customComposer, $disablePlugins);
+            $composer->setPluginManager($pm);
+
+            $pm->loadInstalledPlugins();
         }
 
         // init locker if possible
@@ -438,6 +448,18 @@ class Factory
         $composer = null;
         try {
             $composer = $this->createComposer($io, $config->get('home') . '/composer.json', $disablePlugins, $config->get('home'), $fullLoad);
+        } catch (\Exception $e) {
+            $io->writeError('Failed to initialize global composer: '.$e->getMessage(), true, IOInterface::DEBUG);
+        }
+
+        return $composer;
+    }
+
+    protected function createCustomComposer(IOInterface $io, Config $config, $disablePlugins, $fullLoad = false)
+    {
+        $composer = null;
+        try {
+            $composer = $this->createComposer($io, '/var/.composer/composer.json', $disablePlugins, '/var/.composer', $fullLoad);
         } catch (\Exception $e) {
             $io->writeError('Failed to initialize global composer: '.$e->getMessage(), true, IOInterface::DEBUG);
         }
