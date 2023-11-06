@@ -52,7 +52,7 @@ class Composer
      */
     const VERSION = '1.10.27';
     const BRANCH_ALIAS_VERSION = '';
-    const RELEASE_DATE = '(prestissimo) 2023-09-29 10:50:23';
+    const RELEASE_DATE = '(prestissimo) 2023-11-06 15:32:23';
     const SOURCE_VERSION = '';
     /**
      * Version number of the internal composer-runtime-api package

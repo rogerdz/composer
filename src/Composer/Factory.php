@@ -381,15 +381,14 @@ class Factory
             $pm = $this->createPluginManager($io, $composer, $globalComposer, $disablePlugins);
             $composer->setPluginManager($pm);
 
-            $pm->loadInstalledPlugins();
+            // $pm->loadInstalledPlugins();
 
             $customComposer = null;
             if (realpath($config->get('home')) !== $cwd) {
                 $customComposer = $this->createCustomComposer($io, $config, $disablePlugins);
+                $pm = $this->createPluginManager($io, $composer, $customComposer, $disablePlugins);
+                $composer->setPluginManager($pm);
             }
-
-            $pm = $this->createPluginManager($io, $composer, $customComposer, $disablePlugins);
-            $composer->setPluginManager($pm);
 
             $pm->loadInstalledPlugins();
         }
