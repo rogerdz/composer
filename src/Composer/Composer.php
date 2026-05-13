@@ -50,9 +50,9 @@ class Composer
      * const RELEASE_DATE = '@release_date@';
      * const SOURCE_VERSION = '1.8-dev+source';
      */
-    const VERSION = '1.10.27';
+    const VERSION = '1.10.28';
     const BRANCH_ALIAS_VERSION = '';
-    const RELEASE_DATE = '(prestissimo) 2023-11-06 15:32:23';
+    const RELEASE_DATE = '(prestissimo) 2026-05-13 20:32:23';
     const SOURCE_VERSION = '';
     /**
      * Version number of the internal composer-runtime-api package
